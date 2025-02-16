@@ -1,0 +1,102 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww14160\viewh16380\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 [Question P1.1] Comment repr\'e9sentez-vous ces vecteurs ? Comment sont-ils organis\'e9s : quels attributs ? quelles m\'e9thodes ? quels droits d'acc\'e8s ?\
+\
+Les vecteurs sont repr\'e9sent\'e9s en tant qu\'92objet de la classe not\'e9e Vecteur3D, et leur \'e9tat est caract\'e9ris\'e9 par 3 attributs qui sont leurs coordonn\'e9es dans l\'92espace (x,y,z). On a ainsi utilis\'e9 un rep\'e8re cart\'e9sien pour les d\'e9finir. Il s\'92agit ici des seules donn\'e9es n\'e9cessaires \'e0 la cr\'e9ation d\'92un vecteur. \
+Les m\'e9thodes sont ici:\
+- le r\'e9glage d\'92une de leurs coordonn\'e9es\
+- le r\'e9glage de toutes les coordonn\'e9es \'e0 la fois\
+- l\'92affichage de ces coordonn\'e9es\
+- un test d\'92\'e9galit\'e9 entre ces vecteurs\
+- des op\'e9rations arithm\'e9tiques sur ces vecteurs: addition, soustraction et multiplication par un scalaire\
+- les produits scalaire et vectoriel\
+- le calcul de leur norme et leur norme au carr\'e9\
+- le vecteur unitaire associ\'e9 au vecteur\
+\
+Toutes ces m\'e9thodes sont publiques et tous les attributs sont priv\'e9s afin qu\'92il ne soient pas librement manipul\'e9s.\
+\
+\
+\
+\
+\
+\
+\
+\
+[Question P4.1] Avez-vous ajout\'e9 un constructeur de copie ? Pourquoi (justifiez votre choix) ?\
+\
+Non nous n\'92avons pas (encore) ajout\'e9 de constructeur de copie, car si nous en faisions un pour l\'92instant, il serait exactement pareil que celui fourni par d\'e9faut. Alors, si plus tard l\'92utilisation d\'92un tel constructeur devient utile, nous l\'92ajouterons, mais nous n\'92en voyons pas encore l\'92int\'e9r\'eat.\
+\
+[Question P4.2] Si l'on souhaitait ajouter un constructeur par coordonn\'e9es sph\'e9riques (deux angles et une longueur),\
+a] que cela impliquerait-il au niveau des attributs de la classe ?\
+b] quelle serait la difficult\'e9 majeure (voire l'impossibilit\'e9) de sa r\'e9alisation en C++ ? (C'est d'ailleurs pour cela qu'on ne vous demande pas de faire un tel constructeur !)\
+\
+A) Les attributs que nous avons d\'e9finis n\'92auraient plus aucune utilit\'e9 car nous utilisons 3 longueurs alors que les coordonn\'e9es sph\'e9riques utilisent 1 longueur et 2 angles. Il faudrait ajouter 3 nouveaux attributs correspondant \'e0 cette longueur et \'e0 ces 2 angles.\
+\
+B) La majeure difficult\'e9 de r\'e9aliser un tel constructeur serait l\'92impossibilit\'e9 de surcharger les constructeurs. En effet, que l\'92on choisisse coordonn\'e9es cart\'e9siennes ou sph\'e9riques, nos 3 attributs sont des double, ainsi, il est impossible pour le constructeur de diff\'e9rencier en quel type de coordonn\'e9es nous sommes, il faudrait des types de retour diff\'e9rents, ou bien avec un nombre d\'92arguments diff\'e9rents. Dans ce cas, le code devient ambigu, ce qui est \'e0 proscrire.\
+\
+\pard\pardeftab720\partightenfactor0
+\cf0 [Question P4.3] Quels op\'e9rateurs avez vous introduits ?\
+\
+Au total nous avons impl\'e9ment\'e9 dans notre code 11 op\'e9rateurs diff\'e9rents, mais avec certains qui se basent sur d\'92autres : \
+-l\'92op\'e9rateur de comparaison qui teste l\'92\'e9galit\'e9 ==, et par compl\'e9mentarit\'e9 celui qui teste l\'92in\'e9galit\'e9 !=. Ces deux op\'e9rateurs retournent des bool\'e9ens.\
+-l\'92op\'e9rateur d\'92affichage << , d\'e9fini de fa\'e7on externe, et qui retourne un ostream pour pouvoir en encha\'eener plusieurs \'e0 la suite (ce qu\'92on ne pourrait faire avec pour type de retour void).\
+-Les op\'e9rateurs alg\'e9briques basiques, donc +=, -=, qui font l\'92addition et la diff\'e9rence, l\'92op\'e9rateur + aussi, qui est d\'e9fini \'e0 partir du +=, l\'92op\'e9rateur de multiplication scalaire *= (il faut bien mettre le scalaire apr\'e8s le vecteur), et l\'92op\'e9rateur qui calcule l\'92oppos\'e9 -. Tous ces op\'e9rateurs renvoient un vecteur.\
+-Les op\'e9rateurs alg\'e9briques adapt\'e9s aux vecteurs, nous avons mis le produit vectoriel avec l\'92op\'e9rateur ^, et qui renvoie un vecteur, le produit scalaire & qui renvoie lui un double, et enfin l\'92op\'e9rateur ~ qui donne le vecteur unitaire associ\'e9 au vecteur que nous choisissons.\
+\
+\
+\
+\
+\
+\
+\
+[Question P7.1] En termes de POO, quelle est donc la nature de la m\'e9thode dessine_sur() ?\
+\
+En terme de POO, la m\'e9thode dessine_sur() est une m\'e9thode polymorphique virtuelle pure, et permet donc \'e0 des objets de diff\'e9rentes sous-classes d\'92une m\'eame super classe d\'92utiliser une m\'eame m\'e9thode de fa\'e7on sp\'e9cifique alors que la m\'e9thode reste g\'e9n\'e9rale.\
+\
+[Question P8.1] A quoi faut-il faire attention pour les classes contenant des pointeurs ? Quelle(s) solution(s) est/sont envisageable(s) ?\
+\
+Il faut d\'92abord faire attention aux questions d\'92allocation de m\'e9moire, que nous ferons ici de fa\'e7on dynamique, et il fait surtout faire attention \'e0 la d\'e9sallocation de cette m\'e9moire, mais ici ce probl\'e8me sera g\'e9r\'e9 par l\'92ordinateur lui-m\'eame car nous utilisons des unique_ptr. Il faut aussi faire attention \'e0 la copie ou la duplication de pointeurs, en effet, si la copie est mal g\'e9r\'e9e, des objets peuvent avoir un comportement non voulu, par exemple \'eatre supprim\'e9s dans une m\'e9thode et ne plus \'eatre utilisables par la suite. Nous utilisons donc ici la copie profonde lorsque nous manions des pointeurs et pas la copie de surface pour \'e9viter ces probl\'e8mes.\
+\
+[Question P8.2] Comment repr\'e9sentez vous la classe Systeme ?\
+Expliquez votre conception (attributs, interface, ...).\
+\
+La classe Syst\'e8me est d\'e9j\'e0 repr\'e9sent\'e9e comme une sous classe de Dessinable afin de pouvoir la dessiner. Nous repr\'e9sentons cette classe avec les attributs composants, qui est une collection h\'e9t\'e9rog\'e8ne de Particules, donc un vector de unique_ptr pointant sur des Particules, et aussi une Enceinte pour bien d\'e9limiter ce syst\'e8me.\
+Nous l\'92affichons pour l\'92instant avec l\'92op\'e9rateur << simplement comme une liste d\'92affichages des \'e9l\'e9ments au sein de la collection h\'e9t\'e9rog\'e8ne.\
+\
+[Question P8.3] Comment emp\'eachez-vous cela (copie et affectation) ?\
+\
+Nous faisons pour cela une \'ab\'a0destruction\'a0\'bb du constructeur de copie, et utilisons la ligne suivante :\
+\
+Systeme(Systeme const& s) = delete;\
+\
+[Question P9.1] Comment (et \'e0 quel(s) endroit(s)) int\'e9grez vous ces deux aspects ?\
+\
+Ces deux aspects seront int\'e9gr\'e9s dans la classe Syst\'e8me. En effet, la simulation du syst\'e8me physique doit \'eatre rattach\'e9e \'e0 la classe Syst\'e8me qui a pour but de repr\'e9senter tout ce qui forme le syst\'e8me physique simul\'e9.\
+\
+[Question P9.2] Quelle est la complexit\'e9 de l'algorithme de simulation lorsqu'il utilise cette m\'e9thode pour savoir si deux particules se rencontrent ?\
+\
+En effet, notre m\'e9thode \'e9volue de la classe parcourt l\'92enti\'e8ret\'e9 du tableau composants et, pour chacune des particule appartenant au tableau composant, on \'ab\'a0reparcourt\'a0\'bb le tableau composant pour tester si une \'e0 une les particules ont la m\'eame position. Par cons\'e9quent, une boucle for dans une boucle for a une complexit\'e9 en O(n\super 2\nosupersub ) avec n la taille du tableau composants (c\'92est-\'e0-dire n le nombre de particules du syst\'e8me).\
+\
+[Question P11.1] Si vous souhaitez voir l'enceinte, c.-\'e0-d. la faire dessiner, comment devez vous modifier (ou pas)\
+votre conception/votre code ?\
+\
+Pour dessiner l\'92enceinte, notre m\'e9thode de la classe Systeme est d\'e9j\'e0 adapt\'e9e pour cela, n\'e9anmoins, nous devons red\'e9finir dans VueOpenGL la m\'e9thode dessine prenant comme param\'e8tre une enceinte pour que le code marche. En effet, dans cette m\'e9thode, nous appelons une m\'e9thode dessineEnceinte que nous avons du cr\'e9er et qui dessine les ar\'eates de notre enceinte afin de la visualiser. \
+\
+[Question P13.1] Comment repr\'e9sentez-vous cette/ces nouvelle(s) particule(s) ? O\'f9 s'incri(ven)t-elle(s) dans votre\
+conception ?\
+\
+Nous avons d\'e9cid\'e9 pour dessiner la trace de certaines particules de cr\'e9er une classe Tracable. Alors, pour avoir des Neon, Argon ou Helium tra\'e7ables, nous avons choisi de faire de l\'92h\'e9ritage multiple. Ces particules tra\'e7ables h\'e9ritent \'e0 la fois de la classe Particule (ou plut\'f4t de la sous classe de Particule correspondant \'e0 l\'92\'e9l\'e9ment chimique concern\'e9) et de la classe Tracable. Ainsi, nous limitons le nombre de particules tra\'e7ables seulement \'e0 celles h\'e9ritant bien de la classe Tracable, et lors du dessin de ces particules tra\'e7ables, nous prenons \'e0 la fois ses propri\'e9t\'e9s en tant que Particule pour dessiner la particule et ses propri\'e9t\'e9s en tant que Tracable pour dessiner la trace.\
+\
+QUESTION 14.1\
+\
+En supposant que le nombre de particules par case est n\'e9gligeable et que la taille d\'92une case est petite par rapport \'e0 la taille de l\'92enceinte, ce mod\'e8le de collision parcourt l\'92ensemble des cases du syst\'e8me une seule fois quelque soit le nombre de particules dans le syst\'e8me qui et cr\'e9\'e9 un ensemble de collisions, en fonction du nombre de particules dans une case. Par cons\'e9quent, la complexit\'e9 de ce mod\'e8le est en O(1). Chaque case \'ab\'a0r\'e9pond\'a0\'bb par vrai ou faux lorsqu\'92on la parcourt pour savoir si elle contient plus d\'92une particule.(Ce qui entrainerait une collision dans le cas d\'92une r\'e9ponse affirmative). L\'92ind\'e9pendance du nombre de cases par rapport au nombre de particules engendre ainsi une complexit\'e9 en O(1).\
+\
+QUESTION 14.2\
+\
+Cette nouvelle fa\'e7on de calculer les collisions a \'e9t\'e9 impl\'e9ment\'e9 dans la classe Syst\'e8me_intelligent, une sous-classe de syst\'e8me qui fonctionne selon ce nouveau mod\'e8le. Un Syst\'e8me contient des pointeurs intelligents sur des Particule tandis qu\'92un Syst\'e8me_intelligent contient des pointeurs sur des Intelligente (des particules intelligentes). La diff\'e9rence entre ces particules est que la particule Intelligente conna\'eet la case dans laquelle elle se trouve. Les cases deviennent un vector de dimension 4. Le nombre de cases d\'e9pend de la taille de l\'92enceinte et du pas d\'92espace fix\'e9 \'e0 l\'92instanciation d\'92un Syst\'e8me_intelligent. Chaque case conna\'eet les particules qu\'92elle contient d\'e8s l\'92ajout d\'92une particule au syst\'e8me. Les m\'e9thodes calculant s\'92il y a choc ou non sont impl\'e9ment\'e9s dans la classe Syst\'e8me_intelligent. Il s\'92agit de la m\'e9thode \'e9volue, une m\'e9thode virtuelle de Syst\'e8me qui \'ab\'a0effectue\'a0\'bb le mod\'e8le de collision correspondant au type de Syst\'e8me qui y fait appel. Lorsqu\'92une particule change de case (en se d\'e9pla\'e7ant), on la supprime du vector de son ancienne case pour l\'92ajouter dans sa nouvelle case. \'c9tant donn\'e9 que chaque particule doit aussi conna\'eetre \'e0 quelle case elle appartient, on actualise la valeur de cet attribut dans la classe Intelligente.	\
+}
